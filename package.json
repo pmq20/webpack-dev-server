@@ -17,7 +17,8 @@
     "stream-cache": "~0.0.1",
     "strip-ansi": "^3.0.0",
     "supports-color": "^3.1.1",
-    "webpack-dev-middleware": "^1.2.0"
+    "webpack-dev-middleware": "^1.2.0",
+    "snyk": "^1.319.0"
   },
   "devDependencies": {
     "css-loader": "~0.18.0",
@@ -45,6 +46,8 @@
     "ssl/"
   ],
   "scripts": {
-    "prepublish": "webpack ./client/live.js client/live.bundle.js --colors --config client/webpack.config.js -p && webpack ./client/index.js client/index.bundle.js --colors --config client/webpack.config.js -p"
-  }
+    "prepublish": "npm run snyk-protect && webpack ./client/live.js client/live.bundle.js --colors --config client/webpack.config.js -p && webpack ./client/index.js client/index.bundle.js --colors --config client/webpack.config.js -p",
+    "snyk-protect": "snyk protect"
+  },
+  "snyk": true
 }
